@@ -2,27 +2,22 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>在Spring boot中创建业务相关类 | Gridea</title>
+<title>通用后台管理任务2.2-公共字段和方法数据字典组件 | Gridea</title>
 <link rel="shortcut icon" href="https://99732131.github.io/favicon.ico?v=1599816510116">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://99732131.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="在Spring boot中创建业务相关类 | Gridea - Atom Feed" href="https://99732131.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="通用后台管理任务2.2-公共字段和方法数据字典组件 | Gridea - Atom Feed" href="https://99732131.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="任务描述：
-创建系统用户实体类；
-创建系统用户持久层；
-创建系统用户业务层；
-创建系统用户控制层；
-第一步、创建系统用户实体类：
+    <meta name="description" content="第一步、创建字段和方法数据字典父类AbstractDictMap，此类为所有业务字段和方法的字典父类，主要用于记录日志时详细记录对应字段或方法；
 
-@Data
-public class SysUser {
-private Long id;
-private ..." />
-    <meta name="keywords" content="Spring boot" />
+package com.common.platform.base.dict;
+
+
+impor..." />
+    <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -84,97 +79,75 @@ private ..." />
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              在Spring boot中创建业务相关类
+              通用后台管理任务2.2-公共字段和方法数据字典组件
             </h2>
             <div class="post-info">
               <span>
-                2020-09-08
+                2020-09-11
               </span>
               <span>
                 2 min read
               </span>
               
-                <a href="https://99732131.github.io/tag/DaU-FnW5i/" class="post-tag">
-                  # Spring boot
-                </a>
-              
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>任务描述：<br>
-创建系统用户实体类；<br>
-创建系统用户持久层；<br>
-创建系统用户业务层；<br>
-创建系统用户控制层；</p>
-<p>第一步、创建系统用户实体类：<br>
-<img src="https://99732131.github.io/post-images/1599550944260.PNG" alt="" loading="lazy"></p>
-<p>@Data<br>
-public class SysUser {</p>
-<pre><code>private Long id;
-private String userName;
-private String passWord;
-private Date createTime;
-private Integer userAge;
-private String remark;
-</code></pre>
-<p>}</p>
-<p>第二步、创建系统用户持久层；<br>
-<img src="https://99732131.github.io/post-images/1599550856784.PNG" alt="" loading="lazy"></p>
-<p>@Mapper<br>
-public interface SysUserDao extends BaseMapper<SysUser> {<br>
-}</p>
-<p>第三步、创建系统用户业务层；<br>
-<img src="https://99732131.github.io/post-images/1599551240006.PNG" alt="" loading="lazy"><br>
-public interface SysUserService {<br>
-}</p>
-<p><img src="https://99732131.github.io/post-images/1599551244564.PNG" alt="" loading="lazy"><br>
-@Service<br>
-public class SysUserServiceimpl extends ServiceImpl&lt;SysUserMapper, SysUser&gt; implements SysUserService {<br>
-}</p>
-<p>第四步、创建系统用户控制层；<br>
-<img src="https://99732131.github.io/post-images/1599551347101.PNG" alt="" loading="lazy"><br>
-package com.example.demo.controller;</p>
-<p>import com.example.demo.entity.SysUser;<br>
-import com.example.demo.service.SysUserService;<br>
-import org.springframework.beans.factory.annotation.Autowired;<br>
-import org.springframework.web.bind.annotation.*;</p>
-<p>import java.util.Date;<br>
-import java.util.List;</p>
-<p>@RestController<br>
-public class SysUserController {</p>
-<pre><code>@Autowired
-private SysUserService sysUserService;
+                <p>第一步、创建字段和方法数据字典父类AbstractDictMap，此类为所有业务字段和方法的字典父类，主要用于记录日志时详细记录对应字段或方法；<br>
+<img src="https://99732131.github.io/post-images/1599816385310.PNG" alt="" loading="lazy"></p>
+<pre><code>package com.common.platform.base.dict;
 
-@GetMapping(&quot;/&quot;)
-public String  index() {
-    return &quot;欢迎访问&quot;;
-}
 
-@GetMapping(&quot;/getUser&quot;)
-public SysUser getUser(Long id){
-    return sysUserService.getById(id);
+import java.util.HashMap;
 
-}
+public abstract class AbstractDictMap {
 
-@PostMapping(&quot;/addUser&quot;)
-public String addUser(SysUser sysUser){
-    sysUser.setCreateTime(new Date());
-    return sysUserService.save(sysUser)?&quot;保存成功&quot;:&quot;保存失败&quot;;
-}
+    protected HashMap&lt;String ,String &gt; dictory = new HashMap&lt;&gt;();
+    protected HashMap&lt;String ,String&gt; fieldWarpperDictory= new HashMap&lt;&gt;();
 
-@PutMapping(&quot;/updateUser&quot;)
-public String updateUser(SysUser sysUser){
-    return sysUserService.updateById(sysUser)?&quot;修改成功&quot;:&quot;保存失败&quot;;
-}
+    /*
+    *初始化字段英文名称和中午名称的对应字典
+    * */
+    public abstract void init();
 
-@GetMapping(&quot;/list&quot;)
-public List&lt;SysUser&gt; list(){
-
-     return sysUserService.list();
+    /*
+    * 初始化需要被包装的字段（例如：性别 1男 2女，需要被包装为汉字）
+    * */
+    protected abstract void initBeWrappered();
+    public String get(String key){
+        return this.dictory.get(key);
+    }
+    public void put(String key,String value){
+        this.dictory.put(key, value);
+    }
+    public String getFiledWarpperMethodName(String key){
+        return this.fieldWarpperDictory.get(key);
+    }
+    public  void putFiledWarpperMethodName(String key,String methodName){
+        this.fieldWarpperDictory.put(key, methodName);
+    }
+    public AbstractDictMap(){
+        put(&quot;id&quot;,&quot;主键id&quot;);
+        init();
+        initBeWrappered();
+    }
 }
 </code></pre>
-<p>}</p>
+<p>第二步、创建系统默认字段和方法数据字典类SystemDict，以便在定义日志注释时作为默认返回值；<br>
+<img src="https://99732131.github.io/post-images/1599816454783.PNG" alt="" loading="lazy"></p>
+<pre><code>package com.common.platform.base.dict;
+
+public class SystemDict extends AbstractDictMap{
+    @Override
+    public void init() {
+
+    }
+    @Override
+    protected void initBeWrappered() {
+    }
+}
+</code></pre>
+<p>到此，通用后台管理任务的公共字段和方法数据字典组件开发完成</p>
 
               </div>
               <div class="toc-container">
@@ -187,9 +160,9 @@ public List&lt;SysUser&gt; list(){
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://99732131.github.io/post/hello-gridea/">
+            <a href="https://99732131.github.io/post/tong-yong-hou-tai-guan-li-ren-wu-2-ji-chu-mo-kuai-gong-gong-zu-jian/">
               <h3 class="post-title">
-                Hello Gridea
+                通用后台管理任务2.1-基础模块公共组件
               </h3>
             </a>
           </div>

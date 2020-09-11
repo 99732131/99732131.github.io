@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://99732131.github.io</id>
     <title>Gridea</title>
-    <updated>2020-09-11T09:24:10.515Z</updated>
+    <updated>2020-09-11T09:28:37.182Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://99732131.github.io"/>
     <link rel="self" href="https://99732131.github.io/atom.xml"/>
@@ -10,6 +10,69 @@
     <logo>https://99732131.github.io/images/avatar.png</logo>
     <icon>https://99732131.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[通用后台管理任务2.2-公共字段和方法数据字典组件]]></title>
+        <id>https://99732131.github.io/post/tong-yong-hou-tai-guan-li-ren-wu-22-gong-gong-zi-duan-he-fang-fa-shu-ju-zi-dian-zu-jian/</id>
+        <link href="https://99732131.github.io/post/tong-yong-hou-tai-guan-li-ren-wu-22-gong-gong-zi-duan-he-fang-fa-shu-ju-zi-dian-zu-jian/">
+        </link>
+        <updated>2020-09-11T09:24:56.000Z</updated>
+        <content type="html"><![CDATA[<p>第一步、创建字段和方法数据字典父类AbstractDictMap，此类为所有业务字段和方法的字典父类，主要用于记录日志时详细记录对应字段或方法；<br>
+<img src="https://99732131.github.io/post-images/1599816385310.PNG" alt="" loading="lazy"></p>
+<pre><code>package com.common.platform.base.dict;
+
+
+import java.util.HashMap;
+
+public abstract class AbstractDictMap {
+
+    protected HashMap&lt;String ,String &gt; dictory = new HashMap&lt;&gt;();
+    protected HashMap&lt;String ,String&gt; fieldWarpperDictory= new HashMap&lt;&gt;();
+
+    /*
+    *初始化字段英文名称和中午名称的对应字典
+    * */
+    public abstract void init();
+
+    /*
+    * 初始化需要被包装的字段（例如：性别 1男 2女，需要被包装为汉字）
+    * */
+    protected abstract void initBeWrappered();
+    public String get(String key){
+        return this.dictory.get(key);
+    }
+    public void put(String key,String value){
+        this.dictory.put(key, value);
+    }
+    public String getFiledWarpperMethodName(String key){
+        return this.fieldWarpperDictory.get(key);
+    }
+    public  void putFiledWarpperMethodName(String key,String methodName){
+        this.fieldWarpperDictory.put(key, methodName);
+    }
+    public AbstractDictMap(){
+        put(&quot;id&quot;,&quot;主键id&quot;);
+        init();
+        initBeWrappered();
+    }
+}
+</code></pre>
+<p>第二步、创建系统默认字段和方法数据字典类SystemDict，以便在定义日志注释时作为默认返回值；<br>
+<img src="https://99732131.github.io/post-images/1599816454783.PNG" alt="" loading="lazy"></p>
+<pre><code>package com.common.platform.base.dict;
+
+public class SystemDict extends AbstractDictMap{
+    @Override
+    public void init() {
+
+    }
+    @Override
+    protected void initBeWrappered() {
+    }
+}
+</code></pre>
+<p>到此，通用后台管理任务的公共字段和方法数据字典组件开发完成</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[通用后台管理任务2.1-基础模块公共组件]]></title>
         <id>https://99732131.github.io/post/tong-yong-hou-tai-guan-li-ren-wu-2-ji-chu-mo-kuai-gong-gong-zu-jian/</id>
