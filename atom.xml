@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://99732131.github.io</id>
     <title>Gridea</title>
-    <updated>2020-09-10T08:38:42.548Z</updated>
+    <updated>2020-09-11T08:48:58.597Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://99732131.github.io"/>
     <link rel="self" href="https://99732131.github.io/atom.xml"/>
@@ -10,6 +10,129 @@
     <logo>https://99732131.github.io/images/avatar.png</logo>
     <icon>https://99732131.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[通用后台管理任务2-基础模块公共组件]]></title>
+        <id>https://99732131.github.io/post/tong-yong-hou-tai-guan-li-ren-wu-2-ji-chu-mo-kuai-gong-gong-zu-jian/</id>
+        <link href="https://99732131.github.io/post/tong-yong-hou-tai-guan-li-ren-wu-2-ji-chu-mo-kuai-gong-gong-zu-jian/">
+        </link>
+        <updated>2020-09-11T08:32:17.000Z</updated>
+        <content type="html"><![CDATA[<p>知识介绍	<br>
+对于项目开发中，常量和公共变量的使用是必不可少的。为了达到统一设置和管理会对项目所有模块会使用的数据进行全局定义和设置。在管理系统中系统管理员是一个很重要的角色，它在系统初始完成就会存在，所以会预先设定相关数据。当然，我们还会预先将一些为了扩展而提前定义的数据，比如为今后搭建微服务为每个应用服务设定唯一对应的名称等。<br>
+接口常量与类常量的主要不同在于性能上，由于类常量拥有类的特性在JVM加载时会进行类相关的检查，而接口会直接加载。所以开发中要根据数据使用的不同来选择不同的定义方式。<br>
+约定优于配置（convention over configuration），也称作按约定编程，是一种软件设计范式，旨在减少软件开发人员需做决定的数量，获得简单的好处，而又不失灵活性。在SpringBoot中，约定优于配置可以从以下两个方面来理解：<br>
+（1）开发人员仅需规定应用中不符合约定的部分；<br>
+（2）在没有规定配置的地方，采用默认配置，以简化配置为核心思想。<br>
+总的来说，上面两条都遵循了推荐默认配置的思想。当存在特殊需求的时候，自定义配置即可。这样可以大大的减少配置工作，这就是所谓的“约定”。</p>
+<p>第一步、创建接口常量类Const，设定系统管理员相关常量参数，在系统初始化时指定系统管理员固有数据与其他用户的区别；<br>
+<img src="https://99732131.github.io/post-images/1599813321002.PNG" alt="" loading="lazy"></p>
+<pre><code>package com.common.platform.base.config.sys;
+/**
+ * 系统常量
+         */
+public interface Const {
+
+       /**
+        * 管理员角色的名字
+        */
+        String ADMIN_NAME = &quot;administrator&quot;;
+  /**
+         * 管理员id
+         */
+        Long ADMIN_ID = 1L;
+        /**
+         * 超级管理员角色id
+         */
+         Long ADMIN_ROLE_ID = 1L;
+}
+</code></pre>
+<p>第二步、创建常量类DefaultAvatar，设定公共系统默认头像常量参数，以便系统在用户未设定头像时使用默认头像（对BASE64编码转码有问题的可以去https://blog.csdn.net/qq_41712834/article/details/100652676这个网址看看）。<br>
+<img src="https://99732131.github.io/post-images/1599813727550.PNG" alt="" loading="lazy"></p>
+<pre><code>package com.common.platform.base.config.sys;
+/*
+* 默认的头像Base64编码
+* */
+public class DefaultAvatar {
+    public static final String BASE_64_AVATAR = &quot;/9j/4AAQSkZJRgABAQEASABIAAD/4Q/1RXhpZgAASUkqAAgAAAACADIBAgAUAAAAJgAAAGmHBAABAAAAOgAAAEAAAAAyMDE1OjA1OjA2IDEzOjE5OjAyAAAAAAAAAAMAAwEEAAEAAAAGAAAAAQIEAAEAAABqAAAAAgIEAAEAAACDDwAAAAAAAP/Y/+AAEEpGSUYAAQEAAAEAAQAA/9sAQwAGBAUGBQQGBgUG&quot;;
+}
+</code></pre>
+<p>第三步、创建应用名称参数类AppNameProperties，以便系统其他方法获取和设定应用名称；<br>
+<img src="https://99732131.github.io/post-images/1599813776344.PNG" alt="" loading="lazy"></p>
+<pre><code>package com.common.platform.base.config.app;
+import lombok.Data;
+/*
+* 应用名称
+* */
+@Data
+public class AppNameProperties {
+    private String name;
+}
+</code></pre>
+<p>第四步、创建公共状态枚举类CommonStatus，此类定义了功能启动状态的信息数据；<br>
+<img src="https://99732131.github.io/post-images/1599813882718.PNG" alt="" loading="lazy"></p>
+<pre><code>package com.common.platform.base.enums;
+import lombok.Getter;
+import javax.sql.CommonDataSource;
+@Getter
+public enum CommonStatus {
+    ENABLE(&quot;ENABLE&quot;,&quot;启用&quot;),DISABLE(&quot;DISABLE&quot;,&quot;禁用&quot;);
+    String code;
+    String message;
+    CommonStatus(String code,String message){
+        this.code=code;
+        this.message=message;
+    }
+    public static String getDescription(String status){
+        if (status==null){
+            return &quot;&quot;;
+        }else {
+            for (CommonStatus s:CommonStatus.values()){
+                if (status.equals(s.code)){
+                    return s.getMessage();
+                }
+            }
+        }
+        return &quot;&quot;;
+    }
+}
+</code></pre>
+<p>第五步、创建公共是否状态枚举类YesOrNotEnum，此类定义了数据是否状态的信息数据；<br>
+<img src="https://99732131.github.io/post-images/1599813969945.PNG" alt="" loading="lazy"></p>
+<pre><code>package com.common.platform.base.enums;
+
+import lombok.Getter;
+
+@Getter
+public enum YesOrNotEnum {
+
+    Y(true,&quot;是&quot;,1),N(false,&quot;否&quot;,0);
+
+    private Boolean flag;
+    private String desc;
+    private Integer code;
+
+    YesOrNotEnum(Boolean flag, String desc, Integer code){
+        this.flag=flag;
+        this.desc=desc;
+        this.code=code;
+    }
+
+    public static final String valueOf(Integer status){
+     if (status==null){
+         return &quot;&quot;;
+     }else {
+         for (YesOrNotEnum s:YesOrNotEnum.values()){
+             if ((status.equals(s.getCode()))){
+                 return s.getDesc();
+             }
+         }
+     }
+     return &quot;&quot;;
+    }
+}
+</code></pre>
+<p>到此，通用后台管理的基础模块公共组件开发完成</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[通用后台管理任务1.1-搭建聚合工程]]></title>
         <id>https://99732131.github.io/post/tong-yong-hou-tai-guan-li-ren-wu-11-da-jian-ju-he-gong-cheng/</id>
