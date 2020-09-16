@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://99732131.github.io</id>
     <title>Gridea</title>
-    <updated>2020-09-14T09:24:50.237Z</updated>
+    <updated>2020-09-16T06:52:53.916Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://99732131.github.io"/>
     <link rel="self" href="https://99732131.github.io/atom.xml"/>
@@ -10,6 +10,20 @@
     <logo>https://99732131.github.io/images/avatar.png</logo>
     <icon>https://99732131.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[spring开发中的问题：没写注解]]></title>
+        <id>https://99732131.github.io/post/spring-kai-fa-zhong-de-wen-ti-mei-xie-zhu-jie/</id>
+        <link href="https://99732131.github.io/post/spring-kai-fa-zhong-de-wen-ti-mei-xie-zhu-jie/">
+        </link>
+        <updated>2020-09-16T06:43:17.000Z</updated>
+        <content type="html"><![CDATA[<p>在开发过程中出现如下图的运行报错：<br>
+<img src="https://99732131.github.io/post-images/1600238847400.PNG" alt="" loading="lazy"><br>
+很明显的指出UserService文件出现了问题，问题为启动类上没加注解，需要加一个相关的注解<br>
+我的项目是业务层的代码出错，应该添加@Service，将当前类自动注入到spring容器中<br>
+<img src="https://99732131.github.io/post-images/1600239148846.PNG" alt="" loading="lazy"><br>
+添加后运行成功。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[通用后台管理系统报错：Description: Failed to configure a DataSource: 'url' attribute is not ]]></title>
         <id>https://99732131.github.io/post/tong-yong-hou-tai-guan-li-xi-tong-bao-cuo-description/</id>
