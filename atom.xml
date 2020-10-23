@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://99732131.github.io</id>
     <title>Gridea</title>
-    <updated>2020-10-19T09:21:52.957Z</updated>
+    <updated>2020-10-23T09:18:34.776Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://99732131.github.io"/>
     <link rel="self" href="https://99732131.github.io/atom.xml"/>
@@ -10,6 +10,57 @@
     <logo>https://99732131.github.io/images/avatar.png</logo>
     <icon>https://99732131.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[IDEA提醒信息：Cannot resolve table ‘r_resume’]]></title>
+        <id>https://99732131.github.io/post/idea-ti-xing-xin-xi-cannot-resolve-table-r_resume/</id>
+        <link href="https://99732131.github.io/post/idea-ti-xing-xin-xi-cannot-resolve-table-r_resume/">
+        </link>
+        <updated>2020-10-23T09:09:05.000Z</updated>
+        <content type="html"><![CDATA[<p>在idea中出现<br>
+<img src="https://99732131.github.io/post-images/1603444251402.PNG" alt="" loading="lazy"><br>
+这样的提示信息，虽说不会影响程序的运行，但是看着会不舒服。想要解决的话：<br>
+可以在file-Settings-Editor-Inspections-JPA中将Unresolved database references in annotations后的方框里的对勾勾掉。<br>
+<img src="https://99732131.github.io/post-images/1603444630288.PNG" alt="" loading="lazy"><br>
+之后就不会出现红色波浪线了</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[idea连接HBase是报Could not locate executable null\bin\winutils.exe in the Hadoop binaries.错误：]]></title>
+        <id>https://99732131.github.io/post/idea-lian-jie-hbase-shi-bao-could-not-locate-executable-nullbinwinutilsexe-in-the-hadoop-binariescuo-wu/</id>
+        <link href="https://99732131.github.io/post/idea-lian-jie-hbase-shi-bao-could-not-locate-executable-nullbinwinutilsexe-in-the-hadoop-binariescuo-wu/">
+        </link>
+        <updated>2020-10-19T09:24:08.000Z</updated>
+        <content type="html"><![CDATA[<p>错误产生的原因是找不到winxtils.exe，如果实在eclipse中运行，需要下载一个winxtils.exe</p>
+<ol>
+<li>安装并配置插件(我这里还是Linux版的hadoop安装包，我们只需要下载一个winutils.exe文件即可)<br>
+1.文件解压后如下(添加winutils.exe)：<br>
+<img src="https://99732131.github.io/post-images/1603099652503.PNG" alt="" loading="lazy"><br>
+2.设置环境变量(第一个在环境变量下创建HADDOOP_HOME这个变量，第二个在path下添加最后一行的变量)：<br>
+<img src="https://99732131.github.io/post-images/1603099657748.PNG" alt="" loading="lazy"><br>
+3.至此重启电脑后，问题便可以解决了</li>
+</ol>
+<p>如果是在idea中，其实是不需要管的，这个问题通过对错误追踪发现是找不到HADOOP_HOME/bin/winxtils.exe，是在迁移hadoop的时导致变量指向为空。<br>
+所以在需要在本地安装hadoop并配置环境即可解决。<br>
+首先都需要在本地解压hadoop安装包<br>
+第一种方法，<br>
+我们看到源码292行，他是先从System.getProperty(&quot;hadoop.home.dir&quot;);这里获得信息，<br>
+从他的注释信息看<br>
+// first check the Dflag hadoop.home.dir with JVM scope<br>
+首先检查的应该是java虚拟机里面的这个hadoop.home.dir，<br>
+那我们就可以直接在程序开始执行出手动添加<br>
+System.setProperty(&quot;hadoop.home.dir&quot;, &quot;D:\Programe\hadoop-common-2.2.0-bin-master&quot;);<br>
+注意：这段代码要加到程序的开头第一行<br>
+运行程序，刚刚的异常爆红就不会出现了。<br>
+第二种方法，<br>
+从源码296行的System.getenv(&quot;HADOOP_HOME&quot;);，不难看出，如果在虚拟机里面没有找到hadoop.home.dir<br>
+那就从这行代码获得，从注释信息来看<br>
+// fall back to the system/user-global env variable<br>
+那就是从系统的用户全局变量里面找HADOOP_HOME这个配置。<br>
+那我们直接在Windows的系统变量里面配置HADOOP_HOME，然后在PATH里面配置HADOOP_HOME/bin<br>
+这种方法需要重启计算机，运行程序，刚刚的异常爆红就不会出现了。<br>
+至此，两种方法任选其一，都是可以解决问题的</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[spring开发中的问题：Field userService in com.common.platform.sys.modular.system.controller.UserMgrController required a bean of type 'com.common.platform.sys.modular.system.service.UserService' that could not be found.]]></title>
         <id>https://99732131.github.io/post/spring-kai-fa-zhong-de-wen-ti-mei-xie-zhu-jie/</id>

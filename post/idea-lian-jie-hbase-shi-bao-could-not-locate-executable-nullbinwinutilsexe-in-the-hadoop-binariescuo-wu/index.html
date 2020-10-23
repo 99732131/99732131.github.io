@@ -2,24 +2,20 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hello Gridea | Gridea</title>
+<title>idea连接HBase是报Could not locate executable null\bin\winutils.exe in the Hadoop binaries.错误： | Gridea</title>
 <link rel="shortcut icon" href="https://99732131.github.io/favicon.ico?v=1603444707542">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://99732131.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Hello Gridea | Gridea - Atom Feed" href="https://99732131.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="idea连接HBase是报Could not locate executable null\bin\winutils.exe in the Hadoop binaries.错误： | Gridea - Atom Feed" href="https://99732131.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="👏  欢迎使用 Gridea ！
-✍️  Gridea 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...
+    <meta name="description" content="错误产生的原因是找不到winxtils.exe，如果实在eclipse中运行，需要下载一个winxtils.exe
 
-Github
-Gridea 主页
-示例网站
-特性👇
-📝  你可以使用最酷的 Markdo..." />
-    <meta name="keywords" content="Gridea" />
+安装并配置插件(我这里还是Linux版的hadoop安装包，我们只需要下载一个winutils.exe文件即可)
+1.文件..." />
+    <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -81,63 +77,67 @@ Gridea 主页
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Hello Gridea
+              idea连接HBase是报Could not locate executable null\bin\winutils.exe in the Hadoop binaries.错误：
             </h2>
             <div class="post-info">
               <span>
-                2018-12-12
+                2020-10-19
               </span>
               <span>
                 2 min read
               </span>
               
-                <a href="https://99732131.github.io/tag/tf4L2W1G2/" class="post-tag">
-                  # Gridea
-                </a>
-              
             </div>
-            
-              <img class="post-feature-image" src="https://99732131.github.io/post-images/hello-gridea.png" alt="">
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
+                <p>错误产生的原因是找不到winxtils.exe，如果实在eclipse中运行，需要下载一个winxtils.exe</p>
+<ol>
+<li>安装并配置插件(我这里还是Linux版的hadoop安装包，我们只需要下载一个winutils.exe文件即可)<br>
+1.文件解压后如下(添加winutils.exe)：<br>
+<img src="https://99732131.github.io/post-images/1603099652503.PNG" alt="" loading="lazy"><br>
+2.设置环境变量(第一个在环境变量下创建HADDOOP_HOME这个变量，第二个在path下添加最后一行的变量)：<br>
+<img src="https://99732131.github.io/post-images/1603099657748.PNG" alt="" loading="lazy"><br>
+3.至此重启电脑后，问题便可以解决了</li>
+</ol>
+<p>如果是在idea中，其实是不需要管的，这个问题通过对错误追踪发现是找不到HADOOP_HOME/bin/winxtils.exe，是在迁移hadoop的时导致变量指向为空。<br>
+所以在需要在本地安装hadoop并配置环境即可解决。<br>
+首先都需要在本地解压hadoop安装包<br>
+第一种方法，<br>
+我们看到源码292行，他是先从System.getProperty(&quot;hadoop.home.dir&quot;);这里获得信息，<br>
+从他的注释信息看<br>
+// first check the Dflag hadoop.home.dir with JVM scope<br>
+首先检查的应该是java虚拟机里面的这个hadoop.home.dir，<br>
+那我们就可以直接在程序开始执行出手动添加<br>
+System.setProperty(&quot;hadoop.home.dir&quot;, &quot;D:\Programe\hadoop-common-2.2.0-bin-master&quot;);<br>
+注意：这段代码要加到程序的开头第一行<br>
+运行程序，刚刚的异常爆红就不会出现了。<br>
+第二种方法，<br>
+从源码296行的System.getenv(&quot;HADOOP_HOME&quot;);，不难看出，如果在虚拟机里面没有找到hadoop.home.dir<br>
+那就从这行代码获得，从注释信息来看<br>
+// fall back to the system/user-global env variable<br>
+那就是从系统的用户全局变量里面找HADOOP_HOME这个配置。<br>
+那我们直接在Windows的系统变量里面配置HADOOP_HOME，然后在PATH里面配置HADOOP_HOME/bin<br>
+这种方法需要重启计算机，运行程序，刚刚的异常爆红就不会出现了。<br>
+至此，两种方法任选其一，都是可以解决问题的</p>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E7%89%B9%E6%80%A7">特性👇</a></li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://99732131.github.io/post/spring-kai-fa-zhong-de-wen-ti-mei-xie-zhu-jie/">
+              <h3 class="post-title">
+                spring开发中的问题：Field userService in com.common.platform.sys.modular.system.controller.UserMgrController required a bean of type &#39;com.common.platform.sys.modular.system.service.UserService&#39; that could not be found.
+              </h3>
+            </a>
+          </div>
         
 
         
